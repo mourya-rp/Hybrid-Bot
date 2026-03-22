@@ -37,7 +37,8 @@ This submission implements all Optional Enhancements :
 
  Source Snippets: Every RAG response explicitly identifies the source document used for the answer.
 
- Smart Caching: Local embedding avoids redundant API calls for seen queries.
+ Implemented Basic Caching using Python’s @lru_cache decorator to store and reuse vector embeddings for recurring queries, drastically
+ reducing latency and computational overhead.
 
  /summarize Command: Synthesizes the last image analysis and chat history into a comprehensive report.
 
