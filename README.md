@@ -10,6 +10,10 @@ The system is designed for modularity and clear data flow, separating the bot in
 
 <img width="4011" height="2993" alt="system_design" src="https://github.com/user-attachments/assets/c66d02fe-9486-43e2-8d07-c9c5619f7aaa" />
 
+<img width="6343" height="3279" alt="Load Balancer for Bot-2026-03-22-220756" src="https://github.com/user-attachments/assets/f6bc9552-ce8c-42a0-a05c-ec72ecee53b3" />
+
+
+
 ## Logic Flow:
 
 Retrieval (RAG): Documents are split into chunks , embedded using a local sentence-transformers model , and queried using vector similarity.
