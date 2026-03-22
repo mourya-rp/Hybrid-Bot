@@ -26,7 +26,7 @@ Bot Framework: python-telegram-bot (v22.7).
 
 Embeddings: all-MiniLM-L6-v2 (Local model for fast, offline vectorization).
 
-LLM & Vision: Gemini 1.5 (via OpenRouter API) for state-of-the-art multimodal reasoning.
+LLM & Vision: Gemini 2.5 flash (via OpenRouter API) for state-of-the-art multimodal reasoning.
 
 Containerization: Docker for consistent environment deployment.
 
