@@ -4,7 +4,7 @@ This repository contains a high-performance, lightweight GenAI bot. It implement
 # Demo Screenshots
 Screenshots demonstrating working interactions are located in the Demo_screenshots folder.
 
-# System Design:
+# System Design (HLD):
 The system is designed for modularity and clear data flow, separating the bot interface from the retrieval and vision engines
 
 
