@@ -43,8 +43,8 @@ class OpenRouterEngine:
             return answer
         return "Error: Could not reach the AI Engine."
 
-    def get_image_description(self, user_id, image_path): # Added user_id
-        """Multimodal logic: Analyzes image and SAVES to memory."""
+    def get_image_description(self, user_id, image_path): 
+        """Multimodal logic: Strictly provides a short caption and 3 tags."""
         if user_id not in self.memory:
             self.memory[user_id] = []
 
@@ -53,14 +53,25 @@ class OpenRouterEngine:
         
         payload = {
             "model": self.model,
-            "messages": [{
-                "role": "user",
-                "content": [
-                    {"type": "text", "text": "Describe this image and give 3 tags."},
-                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{b64_img}"}}
-                ]
-            }],
-            "max_tokens": 500
+            "messages": [
+                {
+                    "role": "system", 
+                    "content": "You are a concise vision assistant. Your output must follow this EXACT format:\n"
+                        "Caption: [Insert a short caption . No conversational fillers or detailed description]\n"
+                        "Tags:\n"
+                        "1. [Tag 1]\n"
+                        "2. [Tag 2]\n"
+                        "3. [Tag 3]"
+                },
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": "Describe this image with a short caption and 3 tags."},
+                        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{b64_img}"}}
+                    ]
+                }
+            ],
+            "max_tokens": 500 
         }
 
         response = requests.post(
@@ -74,20 +85,20 @@ class OpenRouterEngine:
             description = result['choices'][0]['message']['content']
             self.memory[user_id].append({"role": "assistant", "content": f"Image Analysis: {description}"})
             return description
-        return "Vision analysis failed.Please try again"
+        return "Vision analysis failed. Please try again."
        
 
     def summarize_chat(self, user_id):
         """Summarizes the recent conversation and image analysis for the user."""
-        # 1. Check if there is anything to summarize
+
         if user_id not in self.memory or not self.memory[user_id]:
             return "I don't have any recent messages in my memory to summarize yet!"
 
-        # 2. Prepare the conversation string (last 6 exchanges)
+
         history = self.memory[user_id][-6:]
         history_text = "\n".join([f"{m['role'].upper()}: {m['content']}" for m in history])
         
-        # 3. Ask Gemini to condense it
+        
         payload = {
             "model": self.model,
             "messages": [
