@@ -1,5 +1,5 @@
 # Hybrid-Bot (RAG + VISION)
-This repository contains a high-performance, lightweight GenAI bot. It implements a Hybrid Architecture , merging sophisticated document retrieval with multimodal image analysis into a single Telegram interface.
+This repository contains a high-performance, lightweight GenAI bot. It implements a Hybrid Architecture , merging (RAG) document retrieval with multimodal image analysis into a single Telegram interface.
 
 # Demo Screenshots
 Screenshots demonstrating working interactions are located in the Demo_screenshots folder.
